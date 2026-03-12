@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="1UPGaming - Premium PS5 Rental Service in Itanagar, Naharlagun & Nirjuli, Arunachal Pradesh. No security deposit. FC 26 FREE with every rental!">
+  <title>1UPGaming - Level Up Your Gaming Experience | PS5 Rental</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Inline extra homepage styles */
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+    .scroll-arrow {
+      width: 24px;
+      height: 24px;
+      border-right: 2px solid var(--text-muted);
+      border-bottom: 2px solid var(--text-muted);
+      transform: rotate(45deg);
+    }
+    .no-deposit-banner {
+      background: linear-gradient(135deg, rgba(168,85,247,0.1), rgba(59,130,246,0.1));
+      border: 1px solid rgba(168,85,247,0.2);
+      border-radius: 16px;
+      padding: 20px 32px;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .how-it-works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+    .step-card {
+      text-align: center;
+      padding: 32px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      transition: var(--transition);
+      position: relative;
+    }
+    .step-card:hover {
+      border-color: rgba(168,85,247,0.3);
+      transform: translateY(-4px);
+    }
+    .step-num-big {
+      font-size: 3rem;
+      font-weight: 900;
+      background: var(--gradient-btn);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .step-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    .step-card p  { color: var(--text-secondary); font-size: 0.9rem; }
+    .games-preview-section { padding: 80px 0; }
+    .games-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .cta-section {
+      background: linear-gradient(135deg, #1a0a2e, #0a1a2e);
+      padding: 80px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(168,85,247,0.12) 0%, transparent 70%);
+    }
+    .cta-section-content { position: relative; z-index: 2; }
+    .cta-section h2 { font-size: clamp(1.8rem,4vw,3rem); margin-bottom: 16px; }
+    .cta-section p { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 36px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .eligibility-section { padding: 60px 0; }
+    .eligibility-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .elig-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: var(--transition);
+    }
+    .elig-card:hover { border-color: rgba(168,85,247,0.3); }
+    .elig-icon { font-size: 2rem; flex-shrink: 0; }
+    .elig-card h4 { font-size: 1rem; margin-bottom: 6px; }
+    .elig-card p  { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+  NAVBAR
+  ============================================================ -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">🎮</div>
+      <span class="gradient-text">1UP</span><span>Gaming</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="games.html">Game Library</a>
+      <a href="booking.html">Book Now</a>
+      <a href="terms.html">Terms</a>
+      <a href="games.html" class="nav-cta">🎮 Rent PS5</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============================================================
+  HERO SECTION
+  ============================================================ -->
+<section class="hero">
+  <div class="hero-particles"></div>
+  <div class="hero-content">
+
+    <div class="hero-badge">
+      🎮 Premium PS5 Rental — Arunachal Pradesh
+    </div>
+
+    <h1 class="hero-title">
+      <span class="gradient-text">1UP</span>Gaming
+    </h1>
+
+    <p class="hero-slogan">
+      <strong>Level Up Your Gaming Experience!</strong><br>
+      PS5 Rentals delivered to your door — Game More, Pay Less!
+    </p>
+
+    <div class="hero-highlights">
+      <span class="highlight-chip green">✅ No Security Deposit</span>
+      <span class="highlight-chip purple">⚽ FC 26 FREE!</span>
+      <span class="highlight-chip blue">🚚 Free Delivery</span>
+      <span class="highlight-chip pink">🎮 49+ PS5 Games</span>
+    </div>
+
+    <div class="hero-cta">
+      <a href="games.html" class="btn btn-primary">
+        🎮 Browse Games
+      </a>
+      <a href="https://wa.me/918974740608?text=Hi%201UPGaming!%20I%27d%20like%20to%20rent%20a%20PS5." 
+         class="btn btn-whatsapp" target="_blank" rel="noopener">
+        💬 WhatsApp Us
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number gradient-text" data-count="49" data-suffix="+">49+</span>
+        <span class="stat-label">PS5 Games</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number gradient-text" data-count="3" data-suffix="">3</span>
+        <span class="stat-label">Service Areas</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number text-green">₹499</span>
+        <span class="stat-label">From / Day</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number text-pink">0</span>
+        <span class="stat-label">Security Deposit</span>
+      </div>
+    </div>
+
+  </div>
+  <div class="hero-scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+  NO DEPOSIT + FC26 BANNERS
+  ============================================================ -->
+<section class="section" style="padding-top:48px;padding-bottom:0">
+  <div class="container">
+
+    <div class="no-deposit-banner reveal">
+      🚫 <span class="gradient-text">ZERO Security Deposit!</span> 
+      &nbsp;Just show your ID, confirm delivery, and start gaming. 
+      No money blocked. No stress.
+    </div>
+
+    <!-- FC 26 Banner -->
+    <div class="fc26-banner reveal">
+      <div class="fc26-banner-content">
+        <div class="fc26-badge">🎁 FREE with Every Rental</div>
+        <div class="fc26-title">⚽ FC 26 Included FREE!</div>
+        <p class="fc26-subtitle">
+          Every PS5 console rental comes with <strong>FC 26</strong> (the latest football game) 
+          absolutely <strong>FREE</strong> — no extra charge!
+        </p>
+        <a href="games.html" class="btn btn-green" style="display:inline-flex">
+          🎮 Start Renting Now
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+  FEATURES SECTION
+  ============================================================ -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title reveal">Why Choose <span class="gradient-text">1UPGaming?</span></h2>
+    <p class="section-subtitle reveal">The best PS5 rental experience in Arunachal Pradesh</p>
+
+    <div class="features-grid">
+      <div class="feature-card reveal animate-delay-1">
+        <div class="feature-icon green">🚫</div>
+        <h3>No Security Deposit</h3>
+        <p>Unlike other services, we don't lock your money. Rent a PS5 with zero deposit — just your valid ID!</p>
+      </div>
+      <div class="feature-card reveal animate-delay-2">
+        <div class="feature-icon purple">⚽</div>
+        <h3>FC 26 FREE!</h3>
+        <p>Every rental includes FC 26 (football game) absolutely free. Play the world's most popular football game without paying extra.</p>
+      </div>
+      <div class="feature-card reveal animate-delay-3">
+        <div class="feature-icon blue">🚚</div>
+        <h3>Free Home Delivery</h3>
+        <p>We deliver to Itanagar, Naharlagun, and Nirjuli. Just share your location and we'll bring the PS5 to you!</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon cyan">🎮</div>
+        <h3>49+ Popular Games</h3>
+        <p>Huge library including GTA V, Spider-Man, God of War, FIFA, NBA 2K, and many more PS5 exclusives!</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon pink">💰</div>
+        <h3>Affordable Prices</h3>
+        <p>Starting at just ₹499/day! Save big on 3-day (₹899) and 1-week (₹1399) plans.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon orange">⚡</div>
+        <h3>Instant WhatsApp Booking</h3>
+        <p>Book in minutes via WhatsApp. No complicated forms, no waiting — just message us and we deliver!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- ============================================================
+  PRICING SECTION
+  ============================================================ -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title reveal">Simple, <span class="gradient-text">Affordable Pricing</span></h2>
+    <p class="section-subtitle reveal">No hidden charges. No security deposit. Just pure gaming!</p>
+
+    <div class="pricing-grid">
+
+      <div class="pricing-card reveal">
+        <div class="pricing-icon">⚡</div>
+        <div class="pricing-duration">1 Day</div>
+        <div class="pricing-amount gradient-text">
+          <sup>₹</sup>499
+        </div>
+        <p class="pricing-per">per day rental</p>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> Full PS5 Console</li>
+          <li><span class="check">✓</span> 2 Controllers</li>
+          <li><span class="check">✓</span> FC 26 FREE 🎁</li>
+          <li><span class="check">✓</span> Any 1 Game</li>
+          <li><span class="check">✓</span> Home Delivery</li>
+          <li><span class="check">✓</span> No Deposit 🚫</li>
+        </ul>
+        <a href="games.html" class="btn btn-secondary" style="width:100%;justify-content:center">Choose Game</a>
+      </div>
+
+      <div class="pricing-card featured reveal">
+        <div class="pricing-badge">🔥 Most Popular</div>
+        <div class="pricing-icon">🔥</div>
+        <div class="pricing-duration">3 Days</div>
+        <div class="pricing-amount gradient-text">
+          <sup>₹</sup>899
+        </div>
+        <p class="pricing-per">3-day rental — Save ₹198!</p>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> Full PS5 Console</li>
+          <li><span class="check">✓</span> 2 Controllers</li>
+          <li><span class="check">✓</span> FC 26 FREE 🎁</li>
+          <li><span class="check">✓</span> Any 1 Game</li>
+          <li><span class="check">✓</span> Home Delivery</li>
+          <li><span class="check">✓</span> No Deposit 🚫</li>
+        </ul>
+        <a href="games.html" class="btn btn-primary" style="width:100%;justify-content:center">Choose Game</a>
+      </div>
+
+      <div class="pricing-card reveal">
+        <div class="pricing-icon">🏆</div>
+        <div class="pricing-duration">1 Week</div>
+        <div class="pricing-amount gradient-text">
+          <sup>₹</sup>1399
+        </div>
+        <p class="pricing-per">7-day rental — Best value!</p>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> Full PS5 Console</li>
+          <li><span class="check">✓</span> 2 Controllers</li>
+          <li><span class="check">✓</span> FC 26 FREE 🎁</li>
+          <li><span class="check">✓</span> Any 1 Game</li>
+          <li><span class="check">✓</span> Home Delivery</li>
+          <li><span class="check">✓</span> No Deposit 🚫</li>
+        </ul>
+        <a href="games.html" class="btn btn-secondary" style="width:100%;justify-content:center">Choose Game</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- ============================================================
+  SERVICE AREAS
+  ============================================================ -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title reveal">📍 We Deliver To</h2>
+    <p class="section-subtitle reveal">Serving 3 areas in Arunachal Pradesh with free delivery</p>
+
+    <div class="areas-grid">
+      <div class="area-card reveal">
+        <div class="area-icon">🏙️</div>
+        <h3 class="gradient-text">Itanagar</h3>
+        <p>Capital city coverage. Delivery available across all major localities in Itanagar.</p>
+      </div>
+      <div class="area-card reveal">
+        <div class="area-icon">🌆</div>
+        <h3 class="gradient-text">Naharlagun</h3>
+        <p>Full coverage of Naharlagun. Fast delivery across all residential areas.</p>
+      </div>
+      <div class="area-card reveal">
+        <div class="area-icon">🏘️</div>
+        <h3 class="gradient-text">Nirjuli</h3>
+        <p>Complete Nirjuli coverage. Same-day delivery available.</p>
+      </div>
+    </div>
+
+    <div class="notice info mt-32 reveal" style="justify-content:center">
+      📍 Share your live location on WhatsApp for accurate and fast delivery to your doorstep!
+    </div>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- ============================================================
+  HOW IT WORKS
+  ============================================================ -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title reveal">How It <span class="gradient-text">Works</span></h2>
+    <p class="section-subtitle reveal">Rent a PS5 in 4 simple steps</p>
+
+    <div class="how-it-works-grid">
+      <div class="step-card reveal">
+        <div class="step-num-big">01</div>
+        <h3>🎮 Pick Your Game</h3>
+        <p>Browse our library of 49+ PS5 titles and pick the game you want to play.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num-big">02</div>
+        <h3>📅 Choose Plan</h3>
+        <p>Select 1 Day (₹499), 3 Days (₹899), or 1 Week (₹1399) — all plans include FC 26 FREE!</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num-big">03</div>
+        <h3>✅ Verify & Book</h3>
+        <p>Share your Aadhaar/PAN details, delivery address, and live location. Your booking goes directly to our WhatsApp.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num-big">04</div>
+        <h3>🚚 Get Delivered!</h3>
+        <p>We deliver the PS5 console + your chosen game to your doorstep. Start gaming!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- ============================================================
+  FEATURED GAMES PREVIEW
+  ============================================================ -->
+<section class="section games-preview-section">
+  <div class="container">
+    <h2 class="section-title reveal">🎮 Popular <span class="gradient-text">Games</span></h2>
+    <p class="section-subtitle reveal">A sneak peek from our library of 49+ PS5 titles</p>
+
+    <div class="games-preview-grid" id="homeGameList"></div>
+
+    <div style="text-align:center;margin-top:12px">
+      <a href="games.html" class="btn btn-primary">
+        🎮 View All 49+ Games →
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="neon-divider"></div>
+
+<!-- ============================================================
+  ELIGIBILITY SECTION
+  ============================================================ -->
+<section class="eligibility-section">
+  <div class="container">
+    <h2 class="section-title reveal">📋 Eligibility <span class="gradient-text">Requirements</span></h2>
+    <p class="section-subtitle reveal">Please read before booking</p>
+
+    <div class="eligibility-cards">
+      <div class="elig-card reveal">
+        <div class="elig-icon">🏔️</div>
+        <div>
+          <h4 class="text-purple">APST Only</h4>
+          <p>This service is exclusively available for <strong>Arunachal Pradesh Scheduled Tribe (APST)</strong> members due to security reasons.</p>
+        </div>
+      </div>
+      <div class="elig-card reveal">
+        <div class="elig-icon">🔞</div>
+        <div>
+          <h4 class="text-pink">18+ Required</h4>
+          <p>You must be <strong>18 years or older</strong>. Minors must be accompanied by a parent or guardian (18+) who will be responsible for the rental.</p>
+        </div>
+      </div>
+      <div class="elig-card reveal">
+        <div class="elig-icon">🪪</div>
+        <div>
+          <h4 class="text-blue">Valid ID Required</h4>
+          <p>Aadhaar Card or PAN Card required for verification. Your details are kept confidential and used only for booking purposes.</p>
+        </div>
+      </div>
+      <div class="elig-card reveal">
+        <div class="elig-icon">📍</div>
+        <div>
+          <h4 class="text-green">Live Location</h4>
+          <p>Share your live location on WhatsApp for accurate delivery. Required for all delivery orders in Itanagar, Naharlagun & Nirjuli.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:32px" class="reveal">
+      <a href="terms.html" class="btn btn-secondary">📜 View Full Terms & Conditions</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  CTA SECTION
+  ============================================================ -->
+<section class="cta-section">
+  <div class="cta-section-content">
+    <h2 class="reveal">Ready to <span class="gradient-text">Level Up?</span></h2>
+    <p class="reveal">Join gamers across Itanagar, Naharlagun & Nirjuli enjoying premium PS5 gaming at home!</p>
+    <div class="hero-cta reveal" style="margin-bottom:0">
+      <a href="games.html" class="btn btn-primary">🎮 Browse All Games</a>
+      <a href="https://wa.me/918974740608?text=Hi%201UPGaming!%20I%20want%20to%20rent%20a%20PS5." 
+         class="btn btn-whatsapp" target="_blank" rel="noopener">
+        💬 Book on WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  FOOTER
+  ============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:16px">
+          <div class="logo-icon">🎮</div>
+          <span class="gradient-text">1UP</span><span>Gaming</span>
+        </div>
+        <p>Premium PS5 rental service in Arunachal Pradesh. Game More, Pay Less! No deposit required, FC 26 FREE with every rental.</p>
+        <div class="footer-socials">
+          <a href="https://instagram.com/1up_gaming31" class="social-btn instagram" target="_blank" rel="noopener" aria-label="Instagram">
+            📸
+          </a>
+          <a href="https://wa.me/918974740608" class="social-btn whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
+            💬
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="games.html">Game Library</a></li>
+          <li><a href="booking.html">Book Now</a></li>
+          <li><a href="terms.html">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Service Areas</h4>
+        <ul>
+          <li><a href="#">🏙️ Itanagar</a></li>
+          <li><a href="#">🌆 Naharlagun</a></li>
+          <li><a href="#">🏘️ Nirjuli</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Pricing</h4>
+        <ul>
+          <li><a href="booking.html">⚡ 1 Day — ₹499</a></li>
+          <li><a href="booking.html">🔥 3 Days — ₹899</a></li>
+          <li><a href="booking.html">🏆 1 Week — ₹1399</a></li>
+          <li><a href="booking.html">⚽ FC 26 FREE!</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 1UPGaming. Exclusively for APST — Arunachal Pradesh, India.</p>
+      <div class="rawg-attribution">
+        <span>Game data powered by</span>
+        <a href="https://rawg.io" target="_blank" rel="noopener">RAWG</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+  FLOATING WHATSAPP
+  ============================================================ -->
+<div class="floating-whatsapp">
+  <span class="whatsapp-tooltip">💬 Query about a game?</span>
+  <a href="https://wa.me/918974740608?text=Hi%201UPGaming!%20I%20have%20a%20query%20about%20a%20game." 
+     class="whatsapp-fab" target="_blank" rel="noopener" aria-label="WhatsApp chat">
+    💬
+  </a>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="1UPGaming Game Library — Browse 49+ PS5 games available for rent. Sports, Action, Racing, Fighting, RPG and more!">
+  <title>Game Library — 1UPGaming PS5 Rental</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">🎮</div>
+      <span class="gradient-text">1UP</span><span>Gaming</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="games.html" class="active">Game Library</a>
+      <a href="booking.html">Book Now</a>
+      <a href="terms.html">Terms</a>
+      <a href="booking.html" class="nav-cta">🎮 Book Now</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <h1>🎮 Game <span class="gradient-text">Library</span></h1>
+  <p>Browse our collection of <strong>49+ PS5 titles</strong>. Pick your game and start renting!</p>
+  <div style="margin-top:16px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+    <span class="highlight-chip green" style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:25px;font-size:0.85rem;font-weight:700;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);color:#22c55e">
+      ⚽ FC 26 FREE with every rental!
+    </span>
+    <span style="display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:25px;font-size:0.85rem;font-weight:700;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.3);color:#a855f7">
+      🚫 No Security Deposit
+    </span>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-container">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="gameSearch" placeholder="Search games..." autocomplete="off">
+    </div>
+    <div class="filter-chips">
+      <button class="filter-chip active" data-filter="All">All</button>
+      <button class="filter-chip" data-filter="Sports">⚽ Sports</button>
+      <button class="filter-chip" data-filter="Action">⚔️ Action</button>
+      <button class="filter-chip" data-filter="Racing">🏎️ Racing</button>
+      <button class="filter-chip" data-filter="Fighting">🥊 Fighting</button>
+      <button class="filter-chip" data-filter="Shooter">🔫 Shooter</button>
+      <button class="filter-chip" data-filter="RPG">🐉 RPG</button>
+      <button class="filter-chip" data-filter="Family">❤️ Family</button>
+      <button class="filter-chip" data-filter="Horror">👁️ Horror</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="section" style="padding-top:40px">
+  <div class="container">
+
+    <!-- Count -->
+    <p class="games-count" id="gamesCount">Loading games...</p>
+
+    <!-- Loading -->
+    <div class="games-loading" id="gamesLoading">
+      <div class="loading-spinner"></div>
+      <p>Loading game library...</p>
+    </div>
+
+    <!-- Games Grid -->
+    <div class="games-grid" id="gamesGrid"></div>
+
+    <!-- No Results -->
+    <div class="no-results hidden" id="noResults">
+      <div class="no-results-icon">🎮</div>
+      <h3>No games found</h3>
+      <p>Try a different search term or category filter.</p>
+    </div>
+
+    <!-- RAWG Attribution -->
+    <div style="text-align:center;margin-top:48px;padding:20px;border-top:1px solid var(--border-color)">
+      <p class="rawg-attribution" style="justify-content:center">
+        <span>🎮 Game data & images powered by</span>
+        <a href="https://rawg.io" target="_blank" rel="noopener" style="color:var(--neon-blue);font-weight:700;margin-left:4px">RAWG</a>
+      </p>
+    </div>
+
+    <!-- Can't find game? -->
+    <div style="text-align:center;margin-top:32px;padding:32px;background:var(--bg-card);border:1px solid var(--border-color);border-radius:20px">
+      <h3 style="margin-bottom:12px">🕹️ Can't find your game?</h3>
+      <p style="color:var(--text-secondary);margin-bottom:20px">
+        We may have more games available! Contact us on WhatsApp to check availability.
+      </p>
+      <a href="https://wa.me/918974740608?text=Hi%201UPGaming!%20I%27m%20looking%20for%20a%20specific%20PS5%20game.%20Do%20you%20have%20it%3F" 
+         class="btn btn-whatsapp" target="_blank" rel="noopener" style="display:inline-flex">
+        💬 Ask on WhatsApp
+      </a>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:16px">
+          <div class="logo-icon">🎮</div>
+          <span class="gradient-text">1UP</span><span>Gaming</span>
+        </div>
+        <p>Premium PS5 rental service in Arunachal Pradesh. No deposit. FC 26 FREE.</p>
+        <div class="footer-socials">
+          <a href="https://instagram.com/1up_gaming31" class="social-btn instagram" target="_blank" rel="noopener" aria-label="Instagram">📸</a>
+          <a href="https://wa.me/918974740608" class="social-btn whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="games.html">Game Library</a></li>
+          <li><a href="booking.html">Book Now</a></li>
+          <li><a href="terms.html">Terms & Conditions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Service Areas</h4>
+        <ul>
+          <li><a href="#">🏙️ Itanagar</a></li>
+          <li><a href="#">🌆 Naharlagun</a></li>
+          <li><a href="#">🏘️ Nirjuli</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Pricing</h4>
+        <ul>
+          <li><a href="booking.html">⚡ 1 Day — ₹499</a></li>
+          <li><a href="booking.html">🔥 3 Days — ₹899</a></li>
+          <li><a href="booking.html">🏆 1 Week — ₹1399</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 1UPGaming. Exclusively for APST — Arunachal Pradesh, India.</p>
+      <div class="rawg-attribution">
+        <span>Game data powered by</span>
+        <a href="https://rawg.io" target="_blank" rel="noopener">RAWG</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<div class="floating-whatsapp">
+  <span class="whatsapp-tooltip">💬 Ask about a game</span>
+  <a href="https://wa.me/918974740608?text=Hi%201UPGaming!%20I%20have%20a%20query%20about%20a%20game." 
+     class="whatsapp-fab" target="_blank" rel="noopener" aria-label="WhatsApp chat">
+    💬
+  </a>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

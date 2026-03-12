@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Book a PS5 rental with 1UPGaming. Choose your plan and complete verification to get PS5 delivered to your door in Itanagar, Naharlagun or Nirjuli.">
+  <title>Book Your PS5 Rental — 1UPGaming</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .idtype-group {
+      display: flex;
+      gap: 12px;
+    }
+    .idtype-group select {
+      flex: 0 0 140px;
+    }
+    .idtype-group input {
+      flex: 1;
+    }
+    .guardian-section {
+      display: none;
+      background: rgba(236,72,153,0.05);
+      border: 1px solid rgba(236,72,153,0.2);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 12px;
+    }
+    .guardian-section.visible {
+      display: block;
+    }
+    .guardian-section h4 {
+      font-size: 0.95rem;
+      color: var(--neon-pink);
+      margin-bottom: 16px;
+    }
+    .booking-sidebar {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      position: sticky;
+      top: 90px;
+    }
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+    .summary-row:last-child { border-bottom: none; }
+    .summary-row .label { color: var(--text-secondary); }
+    .summary-row .value { font-weight: 700; }
+    .summary-total {
+      font-size: 1.5rem;
+      font-weight: 900;
+      text-align: center;
+      padding-top: 16px;
+      margin-top: 8px;
+    }
+    .form-hint {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    @media (min-width: 900px) {
+      .booking-layout {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        gap: 32px;
+        align-items: start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">🎮</div>
+      <span class="gradient-text">1UP</span><span>Gaming</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="games.html">Game Library</a>
+      <a href="booking.html" class="active">Book Now</a>
+      <a href="terms.html">Terms</a>
+      <a href="games.html" class="nav-cta">🎮 Choose Game</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero" style="padding-bottom:40px">
+  <h1>📋 Book Your <span class="gradient-text">PS5 Rental</span></h1>
+  <p>Choose your plan, fill in your details, and we'll deliver the PS5 to you!</p>
+</div>
+
+<!-- MAIN CONTENT -->
+<main style="padding:40px 0 80px">
+  <div class="container">
+
+    <!-- Booking Steps Indicator -->
+    <div class="booking-steps">
+      <div class="step active">
+        <div class="step-num">1</div>
+        <span class="step-label">Select Game</span>
+      </div>
+      <div class="step-divider"></div>
+      <div class="step active">
+        <div class="step-num">2</div>
+        <span class="step-label">Choose Plan</span>
+      </div>
+      <div class="step-divider"></div>
+      <div class="step active">
+        <div class="step-num">3</div>
+        <span class="step-label">Your Details</span>
+      </div>
+      <div class="step-divider"></div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <span class="step-label">Confirm</span>
+      </div>
+    </div>
+
+    <div class="booking-layout">
+
+      <!-- LEFT: FORM -->
+      <div>
+
+        <!-- Selected Game Display -->
+        <div id="selectedGameDisplay"></div>
+
+        <!-- REQUIREMENTS NOTICE -->
+        <div class="requirements-banner reveal" style="margin-bottom:24px">
+          <div class="req-icon">⚠️</div>
+          <div>
+            <h3>Booking Requirements</h3>
+            <p>
+              This service is <strong>exclusively for APST (Arunachal Pradesh Scheduled Tribe)</strong> members. 
+              You must be <strong>18+</strong> (or have a parent/guardian). Valid <strong>Aadhaar/PAN</strong> required for verification.
+              <a href="terms.html" style="color:var(--neon-blue)">View full terms →</a>
+            </p>
+          </div>
+        </div>
+
+        <form id="bookingForm" novalidate>
+
+          <!-- STEP 1: CHOOSE PLAN -->
+          <div class="booking-card reveal">
+            <h2>📅 Choose Your Rental Plan</h2>
+
+            <div class="notice success" style="margin-bottom:20px">
+              ⚽ <strong>FC 26 is FREE</strong> with every plan! No extra charge.
+            </div>
+
+            <div class="plans-grid">
+
+              <div class="plan-option">
+                <input type="radio" name="plan" id="plan1day" value="1day">
+                <label class="plan-label" for="plan1day">
+                  <span class="plan-icon">⚡</span>
+                  <span class="plan-duration">1 Day</span>
+                  <span class="plan-price gradient-text">₹499</span>
+                </label>
+              </div>
+
+              <div class="plan-option">
+                <input type="radio" name="plan" id="plan3days" value="3days" checked>
+                <label class="plan-label" for="plan3days">
+                  <span class="plan-icon">🔥</span>
+                  <span class="plan-duration">3 Days</span>
+                  <span class="plan-price gradient-text">₹899</span>
+                </label>
+              </div>
+
+              <div class="plan-option">
+                <input type="radio" name="plan" id="plan1week" value="1week">
+                <label class="plan-label" for="plan1week">
+                  <span class="plan-icon">🏆</span>
+                  <span class="plan-duration">1 Week</span>
+                  <span class="plan-price gradient-text">₹1399</span>
+                </label>
+              </div>
+
+            </div>
+
+            <p class="form-hint" style="margin-top:12px;text-align:center">
+              ✅ All plans include: PS5 console + 2 controllers + FC 26 FREE + your selected game
+            </p>
+          </div>
+
+          <!-- STEP 2: PERSONAL DETAILS -->
+          <div class="booking-card reveal">
+            <h2>👤 Your Details</h2>
+
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label for="fullName">Full Name <span class="required">*</span></label>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone Number <span class="required">*</span></label>
+                <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" maxlength="10" required>
+              </div>
+
+              <!-- ID Type + Number -->
+              <div class="form-group full-width">
+                <label>Aadhaar / PAN Number <span class="required">*</span></label>
+                <div class="idtype-group">
+                  <select id="idType" name="idType">
+                    <option value="Aadhaar Card">Aadhaar Card</option>
+                    <option value="PAN Card">PAN Card</option>
+                  </select>
+                  <input type="text" id="idNumber" name="idNumber" 
+                         placeholder="Enter Aadhaar or PAN number" required>
+                </div>
+                <p class="form-hint">🔒 Your ID details are kept confidential and used only for verification.</p>
+              </div>
+
+              <!-- Area -->
+              <div class="form-group">
+                <label for="area">Service Area <span class="required">*</span></label>
+                <select id="area" name="area" required>
+                  <option value="">Select your area</option>
+                  <option value="Itanagar">Itanagar</option>
+                  <option value="Naharlagun">Naharlagun</option>
+                  <option value="Nirjuli">Nirjuli</option>
+                </select>
+              </div>
+
+              <!-- Address -->
+              <div class="form-group">
+                <label for="address">Delivery Address <span class="required">*</span></label>
+                <input type="text" id="address" name="address" placeholder="House/Flat No., Street, Locality" required>
+              </div>
+
+              <!-- Additional notes -->
+              <div class="form-group full-width">
+                <label for="notes">Additional Notes (optional)</label>
+                <textarea id="notes" name="notes" placeholder="Any special instructions or landmark..."></textarea>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- STEP 3: LIVE LOCATION -->
+          <div class="booking-card reveal">
+            <h2>📍 Location & Delivery</h2>
+
+            <div class="location-box" style="margin-bottom:20px">
+              <div class="location-icon">📍</div>
+              <div class="location-text">
+                <h4>Share Your Live Location</h4>
+                <p>After submitting this form on WhatsApp, please also share your <strong>live location</strong> for accurate delivery. This helps us reach you faster!</p>
+              </div>
+            </div>
+
+            <a href="https://wa.me/918974740608?text=Hi%201UPGaming!%20Here%20is%20my%20live%20location%3A" 
+               target="_blank" rel="noopener" class="btn btn-whatsapp" 
+               style="display:inline-flex;font-size:0.9rem;padding:10px 20px">
+              📍 Share Live Location on WhatsApp
+            </a>
+          </div>
+
+          <!-- STEP 4: CONFIRMATIONS -->
+          <div class="booking-card reveal">
+            <h2>✅ Confirmations Required</h2>
+
+            <div class="check-group">
+
+              <label class="check-item">
+                <input type="checkbox" id="apstCheck" name="apstCheck" required>
+                <span class="check-text">
+                  <strong>APST Eligibility:</strong> I confirm that I am a member of 
+                  <strong>Arunachal Pradesh Scheduled Tribe (APST)</strong>. I understand this service 
+                  is exclusively for APST members for security reasons.
+                </span>
+              </label>
+
+              <label class="check-item">
+                <input type="checkbox" id="ageCheck" name="ageCheck" required id="ageCheckbox">
+                <span class="check-text">
+                  <strong>Age Requirement:</strong> I confirm I am <strong>18 years or older</strong>, 
+                  OR a parent/guardian (18+) is responsible for this rental.
+                </span>
+              </label>
+
+              <!-- Guardian toggle -->
+              <label class="check-item">
+                <input type="checkbox" id="minorCheck" onchange="toggleGuardian(this)">
+                <span class="check-text">
+                  I am booking on behalf of a minor (under 18) — I will provide guardian details.
+                </span>
+              </label>
+
+              <!-- Guardian section (hidden by default) -->
+              <div class="guardian-section" id="guardianSection">
+                <h4>👨‍👩‍👧 Guardian / Family Member Details</h4>
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label for="guardianName">Guardian Name</label>
+                    <input type="text" id="guardianName" placeholder="Full name of guardian">
+                  </div>
+                  <div class="form-group">
+                    <label for="guardianPhone">Guardian Phone</label>
+                    <input type="tel" id="guardianPhone" placeholder="Guardian's phone number" maxlength="10">
+                  </div>
+                  <div class="form-group">
+                    <label for="guardianRelation">Relation to Minor</label>
+                    <select id="guardianRelation">
+                      <option value="">Select relation</option>
+                      <option value="Parent">Parent</option>
+                      <option value="Sibling">Sibling</option>
+                      <option value="Relative">Relative</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <label class="check-item">
+                <input type="checkbox" id="termsCheck" name="termsCheck" required>
+                <span class="check-text">
+                  I have read and agree to the 
+                  <a href="terms.html" style="color:var(--neon-purple)">Terms & Conditions</a>. 
+                  I understand I am responsible for any damage or loss to the console/games.
+                </span>
+              </label>
+
+            </div>
+          </div>
+
+          <!-- SUBMIT -->
+          <div class="booking-submit reveal">
+            <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:20px">
+              🔒 Your details will be sent securely to 1UPGaming via WhatsApp for booking confirmation.
+            </p>
+            <button type="submit" id="submitBookingBtn" class="btn btn-primary" 
+                    style="width:100%;justify-content:center;font-size:1.1rem;padding:16px">
+              💬 Submit Booking via WhatsApp
+            </button>
+            <p style="margin-top:12px;font-size:0.82rem;color:var(--text-muted)">
+              This will open WhatsApp with your booking details pre-filled. 
+              Send the message to complete your booking.
+            </p>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- RIGHT: SIDEBAR SUMMARY -->
+      <div>
+        <div class="booking-sidebar" id="bookingSidebar">
+          <h3 style="margin-bottom:20px;font-size:1.1rem">🛒 Order Summary</h3>
+
+          <div class="summary-row">
+            <span class="label">Selected Game</span>
+            <span class="value" id="summaryGame">—</span>
+          </div>
+          <div class="summary-row">
+            <span class="label">Plan</span>
+            <span class="value" id="summaryPlan">3 Days</span>
+          </div>
+          <div class="summary-row">
+            <span class="label">Controllers</span>
+            <span class="value text-green">2 ✓</span>
+          </div>
+          <div class="summary-row">
+            <span class="label">FC 26</span>
+            <span class="value text-green">FREE ✓ 🎁</span>
+          </div>
+          <div class="summary-row">
+            <span class="label">Security Deposit</span>
+            <span class="value text-green">₹0 🚫</span>
+          </div>
+          <div class="summary-row">
+            <span class="label">Delivery</span>
+            <span class="value text-green">FREE ✓</span>
+          </div>
+
+          <div class="summary-total">
+            Total: <span class="gradient-text" id="summaryTotal">₹899</span>
+          </div>
+
+          <div style="margin-top:20px;padding:16px;background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.2);border-radius:10px;font-size:0.82rem;color:var(--text-secondary);text-align:center">
+            🎮 PS5 console + 2 controllers + your game + FC 26 all included!
+          </div>
+
+          <!-- Contact -->
+          <div style="margin-top:20px">
+            <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:12px;text-align:center">Need help?</p>
+            <a href="https://wa.me/918974740608" target="_blank" rel="noopener"
+               class="btn btn-whatsapp" style="width:100%;justify-content:center;font-size:0.9rem;padding:12px">
+              💬 WhatsApp Us
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:16px">
+          <div class="logo-icon">🎮</div>
+          <span class="gradient-text">1UP</span><span>Gaming</span>
+        </div>
+        <p>Premium PS5 rental service in Arunachal Pradesh.</p>
+        <div class="footer-socials">
+          <a href="https://instagram.com/1up_gaming31" class="social-btn instagram" target="_blank" rel="noopener" aria-label="Instagram">📸</a>
+          <a href="https://wa.me/918974740608" class="social-btn whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="games.html">Game Library</a></li>
+          <li><a href="booking.html">Book Now</a></li>
+          <li><a href="terms.html">Terms & Conditions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Service Areas</h4>
+        <ul>
+          <li><a href="#">🏙️ Itanagar</a></li>
+          <li><a href="#">🌆 Naharlagun</a></li>
+          <li><a href="#">🏘️ Nirjuli</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Pricing</h4>
+        <ul>
+          <li><a href="#">⚡ 1 Day — ₹499</a></li>
+          <li><a href="#">🔥 3 Days — ₹899</a></li>
+          <li><a href="#">🏆 1 Week — ₹1399</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 1UPGaming. Exclusively for APST — Arunachal Pradesh, India.</p>
+      <div class="rawg-attribution">
+        <span>Game data powered by</span>
+        <a href="https://rawg.io" target="_blank" rel="noopener">RAWG</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<div class="floating-whatsapp">
+  <span class="whatsapp-tooltip">💬 Need help booking?</span>
+  <a href="https://wa.me/918974740608?text=Hi%201UPGaming!%20I%20need%20help%20with%20my%20booking." 
+     class="whatsapp-fab" target="_blank" rel="noopener" aria-label="WhatsApp chat">
+    💬
+  </a>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+  // Booking page specific JS
+  function toggleGuardian(checkbox) {
+    const section = document.getElementById('guardianSection');
+    section.classList.toggle('visible', checkbox.checked);
+  }
+
+  // Update summary on plan change
+  const planPrices = { '1day': 499, '3days': 899, '1week': 1399 };
+  const planLabels = { '1day': '1 Day', '3days': '3 Days', '1week': '1 Week' };
+
+  document.querySelectorAll('input[name="plan"]').forEach(radio => {
+    radio.addEventListener('change', updateSummary);
+  });
+
+  function updateSummary() {
+    const selected = document.querySelector('input[name="plan"]:checked');
+    if (selected) {
+      document.getElementById('summaryPlan').textContent = planLabels[selected.value] || selected.value;
+      document.getElementById('summaryTotal').textContent = '₹' + (planPrices[selected.value] || 899);
+    }
+    // Update game name
+    const game = (typeof getSelectedGame !== 'undefined') ? getSelectedGame() : null;
+    if (game) {
+      const gameEl = document.getElementById('summaryGame');
+      if (gameEl) {
+        gameEl.textContent = game.title.length > 14 ? game.title.slice(0,14) + '…' : game.title;
+      }
+    }
+  }
+
+  // Run on load
+  window.addEventListener('load', () => {
+    updateSummary();
+    // If no game selected, show notice
+    const game = (typeof getSelectedGame !== 'undefined') ? getSelectedGame() : null;
+    if (!game) {
+      const gameEl = document.getElementById('summaryGame');
+      if (gameEl) gameEl.textContent = 'Not chosen';
+    }
+  });
+
+  // Enhanced booking form submission with guardian info
+  const origSubmit = submitBookingToWhatsApp;
+  window.submitBookingToWhatsApp = function() {
+    // Include guardian info if minor checkbox checked
+    const isMinor = document.getElementById('minorCheck')?.checked;
+    const termsChecked = document.getElementById('termsCheck')?.checked;
+    if (!termsChecked) {
+      const errEl = document.getElementById('formError') || (() => {
+        const el = document.createElement('div');
+        el.id = 'formError';
+        el.className = 'notice warning';
+        document.getElementById('submitBookingBtn').parentElement.insertBefore(el, document.getElementById('submitBookingBtn'));
+        return el;
+      })();
+      errEl.textContent = '⚠️ Please agree to the Terms & Conditions to proceed.';
+      errEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      return;
+    }
+    origSubmit();
+  };
+</script>
+</body>
+</html>
