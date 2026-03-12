@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="1UPGaming — PS5 Rental Price List & Game Catalogue. Rental plans from ₹499/day. FC 26 FREE. No security deposit. Serving Itanagar, Naharlagun & Nirjuli.">
+  <title>Price List & Game Catalogue — 1UPGaming PS5 Rental</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#a855f7">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
+  <style>
+    /* ---- Print-specific overrides for pricelist page ---- */
+    .print-btn {
+      position: fixed;
+      bottom: 100px;
+      right: 24px;
+      background: linear-gradient(135deg, #a855f7, #3b82f6);
+      color: #fff;
+      border: none;
+      padding: 14px 24px;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 20px rgba(168,85,247,0.4);
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+    .print-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(168,85,247,0.5); }
+    @media print { .print-btn { display: none !important; } }
+
+    /* ---- Screen styles for pricelist ---- */
+    .pl-hero {
+      text-align: center;
+      padding: 80px 20px 40px;
+      background: var(--gradient-hero);
+    }
+    .pl-hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 900; margin-bottom: 10px; }
+    .pl-hero p  { color: var(--text-secondary); font-size: 1.05rem; }
+    .pl-chips {
+      display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 18px;
+    }
+    .pl-chip {
+      padding: 7px 18px; border-radius: 25px; font-size: 0.85rem; font-weight: 700;
+    }
+    .pl-chip.green  { background: rgba(34,197,94,0.1);  border: 1px solid rgba(34,197,94,0.3);  color: #22c55e; }
+    .pl-chip.purple { background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.3); color: #a855f7; }
+    .pl-chip.blue   { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3); color: #3b82f6; }
+
+    /* ---- Pricing table ---- */
+    .pl-section { max-width: 960px; margin: 0 auto; padding: 0 20px 48px; }
+    .pl-section h2 {
+      font-size: 1.4rem; font-weight: 800; margin-bottom: 20px;
+      padding-bottom: 10px; border-bottom: 1px solid var(--border-color);
+    }
+    .pricing-table {
+      width: 100%; border-collapse: collapse; margin-bottom: 32px;
+    }
+    .pricing-table th, .pricing-table td {
+      padding: 14px 18px; text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .pricing-table thead th {
+      background: var(--bg-card);
+      color: var(--neon-purple);
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .pricing-table tbody tr:hover { background: var(--bg-card); }
+    .pricing-table .plan-icon { font-size: 1.4rem; margin-right: 8px; }
+    .pricing-table .plan-price {
+      font-size: 1.2rem; font-weight: 900; color: var(--neon-green);
+    }
+    .pricing-table .plan-badge {
+      display: inline-block; padding: 3px 10px; border-radius: 25px;
+      font-size: 0.72rem; font-weight: 700;
+      background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); color: #22c55e;
+    }
+    .pricing-table .plan-best {
+      background: rgba(168,85,247,0.1); border-color: rgba(168,85,247,0.3); color: #a855f7;
+    }
+
+    /* ---- Game catalogue ---- */
+    .catalogue-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .cat-card {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: 10px; padding: 12px 16px;
+    }
+    .cat-emoji { font-size: 1.6rem; flex-shrink: 0; }
+    .cat-info { flex: 1; min-width: 0; }
+    .cat-title { font-size: 0.88rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cat-genre {
+      display: inline-block; margin-top: 4px;
+      padding: 2px 8px; border-radius: 25px;
+      font-size: 0.72rem; font-weight: 700;
+      background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.2); color: #a855f7;
+    }
+    .cat-genre.sports   { background: rgba(34,197,94,0.1);  border-color: rgba(34,197,94,0.3);  color: #22c55e; }
+    .cat-genre.action   { background: rgba(168,85,247,0.1); border-color: rgba(168,85,247,0.3); color: #a855f7; }
+    .cat-genre.racing   { background: rgba(6,182,212,0.1);  border-color: rgba(6,182,212,0.3);  color: #06b6d4; }
+    .cat-genre.fighting { background: rgba(249,115,22,0.1); border-color: rgba(249,115,22,0.3); color: #fb923c; }
+    .cat-genre.shooter  { background: rgba(239,68,68,0.1);  border-color: rgba(239,68,68,0.3);  color: #ef4444; }
+    .cat-genre.rpg      { background: rgba(59,130,246,0.1); border-color: rgba(59,130,246,0.3); color: #3b82f6; }
+    .cat-genre.family   { background: rgba(236,72,153,0.1); border-color: rgba(236,72,153,0.3); color: #ec4899; }
+    .cat-genre.horror   { background: rgba(82,82,91,0.2);   border-color: rgba(82,82,91,0.4);   color: #a1a1aa; }
+    .cat-free {
+      font-size: 0.7rem; font-weight: 700;
+      padding: 2px 8px; border-radius: 25px;
+      background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.4); color: #22c55e;
+      margin-left: 6px;
+    }
+
+    /* ---- Info boxes ---- */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .info-box {
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: 12px; padding: 20px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .info-box .info-icon { font-size: 1.8rem; }
+    .info-box h4 { font-size: 0.95rem; font-weight: 700; }
+    .info-box p  { font-size: 0.85rem; color: var(--text-secondary); }
+
+    /* ---- Contact bar ---- */
+    .contact-bar {
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      border-radius: 16px; padding: 24px 32px;
+      display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
+      justify-content: space-between; margin-bottom: 32px;
+    }
+    .contact-bar .contact-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.95rem; font-weight: 600;
+    }
+    .contact-bar .contact-icon { font-size: 1.4rem; }
+
+    /* ---- Print header (only shows when printing) ---- */
+    .print-header {
+      display: none;
+      text-align: center;
+      margin-bottom: 20pt;
+      border-bottom: 2pt solid #7c3aed;
+      padding-bottom: 12pt;
+    }
+    @media print {
+      .print-header { display: block !important; }
+      .pl-hero { padding: 0 0 16pt !important; }
+      .pl-hero h1 { font-size: 22pt !important; }
+      .pl-chips .pl-chip { border: 1pt solid #7c3aed !important; color: #7c3aed !important; background: #faf5ff !important; font-size: 9pt !important; padding: 3pt 8pt !important; }
+      .pl-section { max-width: 100% !important; padding: 0 0 24pt !important; }
+      .pl-section h2 { font-size: 13pt !important; margin-bottom: 8pt !important; padding-bottom: 6pt !important; }
+      .catalogue-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 6pt !important; }
+      .cat-card { padding: 6pt 8pt !important; gap: 6pt !important; }
+      .cat-emoji { font-size: 14pt !important; }
+      .cat-title { font-size: 8pt !important; }
+      .cat-genre { font-size: 7pt !important; padding: 1pt 5pt !important; }
+      .pricing-table th, .pricing-table td { padding: 7pt 10pt !important; font-size: 9pt !important; }
+      .pricing-table .plan-price { font-size: 11pt !important; }
+      .info-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 8pt !important; }
+      .info-box { padding: 10pt !important; }
+      .info-box .info-icon { font-size: 14pt !important; }
+      .info-box h4 { font-size: 9pt !important; }
+      .info-box p  { font-size: 8pt !important; }
+      .contact-bar { padding: 12pt 16pt !important; gap: 10pt !important; flex-direction: row !important; }
+      .contact-bar .contact-item { font-size: 9pt !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR (hidden on print) -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">🎮</div>
+      <span class="gradient-text">1UP</span><span>Gaming</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="games.html">Game Library</a>
+      <a href="booking.html">Book Now</a>
+      <a href="terms.html">Terms</a>
+      <a href="booking.html" class="nav-cta">🎮 Book Now</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="pl-hero">
+  <div class="print-header">
+    <p style="font-size:10pt;color:#555;margin-bottom:4pt">Printed from 1UPGaming.com</p>
+  </div>
+  <h1>🎮 <span class="gradient-text">1UPGaming</span> — PS5 Rental</h1>
+  <p>Official Price List &amp; Game Catalogue · Arunachal Pradesh, India</p>
+  <div class="pl-chips">
+    <span class="pl-chip green">⚽ FC 26 FREE with every rental!</span>
+    <span class="pl-chip purple">🚫 No Security Deposit</span>
+    <span class="pl-chip blue">🚚 Home Delivery</span>
+    <span class="pl-chip blue">📍 Itanagar · Naharlagun · Nirjuli</span>
+  </div>
+</div>
+
+<!-- RENTAL PLANS -->
+<section class="pl-section" style="padding-top:40px">
+  <h2>💰 Rental Plans</h2>
+  <table class="pricing-table">
+    <thead>
+      <tr>
+        <th>Plan</th>
+        <th>Duration</th>
+        <th>Price</th>
+        <th>Includes</th>
+        <th>Best For</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="plan-icon">⚡</span><strong>Quick Play</strong></td>
+        <td>1 Day (24 hrs)</td>
+        <td><span class="plan-price">₹499</span></td>
+        <td>PS5 console + controller + 1 game <span class="plan-badge">FC 26 FREE</span></td>
+        <td>Weekend sessions, trying out gaming</td>
+      </tr>
+      <tr>
+        <td><span class="plan-icon">🔥</span><strong>Extended Play</strong></td>
+        <td>3 Days</td>
+        <td><span class="plan-price">₹899</span></td>
+        <td>PS5 console + controller + 1 game <span class="plan-badge">FC 26 FREE</span></td>
+        <td>Long weekends, school holidays</td>
+      </tr>
+      <tr>
+        <td><span class="plan-icon">🏆</span><strong>Weekly Champion</strong></td>
+        <td>1 Week (7 days)</td>
+        <td><span class="plan-price">₹1399</span></td>
+        <td>PS5 console + controller + 1 game <span class="plan-badge">FC 26 FREE</span></td>
+        <td>Best value — full week of gaming <span class="plan-badge plan-best">Best Value</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Key info -->
+  <div class="info-grid">
+    <div class="info-box">
+      <div class="info-icon">🚫</div>
+      <h4>No Security Deposit</h4>
+      <p>Zero upfront deposit required. Just pay the rental fee and enjoy.</p>
+    </div>
+    <div class="info-box">
+      <div class="info-icon">⚽</div>
+      <h4>FC 26 FREE</h4>
+      <p>EA Sports FC 26 included at no extra cost with every rental plan.</p>
+    </div>
+    <div class="info-box">
+      <div class="info-icon">🚚</div>
+      <h4>Home Delivery</h4>
+      <p>PS5 delivered to &amp; picked up from your door. Itanagar, Naharlagun, Nirjuli.</p>
+    </div>
+    <div class="info-box">
+      <div class="info-icon">🆔</div>
+      <h4>ID Verification</h4>
+      <p>Aadhaar or PAN required. APST residents of Arunachal Pradesh only. 18+ (or guardian).</p>
+    </div>
+  </div>
+</section>
+
+<!-- GAME CATALOGUE -->
+<section class="pl-section">
+  <h2>🎮 Game Catalogue <span style="font-size:0.8rem;font-weight:500;color:var(--text-secondary)">(50+ titles available)</span></h2>
+
+  <!-- Sports -->
+  <h3 style="font-size:1rem;font-weight:700;margin:20px 0 12px;color:var(--neon-green)">⚽ Sports (9 titles)</h3>
+  <div class="catalogue-grid">
+    <div class="cat-card">
+      <span class="cat-emoji">⚽</span>
+      <div class="cat-info"><div class="cat-title">EA Sports FC 26<span class="cat-free">FREE</span></div><span class="cat-genre sports">Sports</span></div>
+    </div>
+    <div class="cat-card">
+      <span class="cat-emoji">⚽</span>
+      <div class="cat-info"><div class="cat-title">EA Sports FC 25</div><span class="cat-genre sports">Sports</span></div>
+    </div>
+    <div class="cat-card">
+      <span class="cat-emoji">⚽</span>
+      <div class="cat-info"><div class="cat-title">EA Sports FC 24</div><span class="cat-genre sports">Sports</span></div>
+    </div>
+    <div class="cat-card">
+      <span class="cat-emoji">🏀</span>
+      <div class="cat-info"><div class="cat-title">NBA 2K25</div><span class="cat-genre sports">Sports</span></div>
+    </div>
+    <div class="cat-card">
+      <span class="cat-emoji">🏀</span>
+      <div class="cat-info"><div class="cat-title">NBA 2K24</div><span class="cat-genre sports">Sports</span></div>
+    </div>
+    <div class="cat-card">
+      <span class="cat-emoji">🤼</span>
+      <div class="cat-info"><div class="cat-title">WWE 2K24</div><span class="cat-genre sports">Sports</span></div>
+    </div>
+    <div class="cat-card">
+      <span class="cat-emoji">🤼</span>
+      <div class="cat-info"><div class="cat-title">WWE 2K23</div><span class="cat-genre sports">Sports</span></div>
+    </div>
+    <div class="cat-card">
+      <span class="cat-emoji">🏏</span>
+      <div class="cat-info"><div class="cat-title">EA Sports Cricket 24</div><span class="cat-genre sports">Sports</span></div>
+    </div>
+    <div class="cat-card">
+      <span class="cat-emoji">⛳</span>
+      <div class="cat-info"><div class="cat-title">PGA Tour 2K23</div><span class="cat-genre sports">Sports</span></div>
+    </div>
+  </div>
+
+  <!-- Action -->
+  <h3 style="font-size:1rem;font-weight:700;margin:20px 0 12px;color:var(--neon-purple)">⚔️ Action / Adventure (16 titles)</h3>
+  <div class="catalogue-grid">
+    <div class="cat-card"><span class="cat-emoji">🔫</span><div class="cat-info"><div class="cat-title">GTA V</div><span class="cat-genre action">Action</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🕷️</span><div class="cat-info"><div class="cat-title">Marvel's Spider-Man 2</div><span class="cat-genre action">Action</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🕷️</span><div class="cat-info"><div class="cat-title">Spider-Man: Miles Morales</div><span class="cat-genre action">Action</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">⚔️</span><div class="cat-info"><div class="cat-title">God of War Ragnarök</div><span class="cat-genre action">Action</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🪄</span><div class="cat-info"><div class="cat-title">Hogwarts Legacy</div><span class="cat-genre action">Action</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">💀</span><div class="cat-info"><div class="cat-title">Elden Ring</div><span class="cat-genre action">Action</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🗡️</span><div class="cat-info"><div class="cat-title">Ghost of Tsushima DC</div><span class="cat-genre action">Action</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🏹</span><div class="cat-info"><div class="cat-title">Horizon Forbidden West</div><span class="cat-genre action">Action</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🧟</span><div class="cat-info"><div class="cat-title">The Last of Us Part I</div><span class="cat-genre action">Action</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🧟</span><div class="cat-info"><div class="cat-title">The Last of Us Part II Remastered</div><span class="cat-genre action">Action</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🗺️</span><div class="cat-info"><div class="cat-title">Uncharted: Legacy of Thieves</div><span class="cat-genre action">Action</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🗡️</span><div class="cat-info"><div class="cat-title">Assassin's Creed Mirage</div><span class="cat-genre action">Action</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🪓</span><div class="cat-info"><div class="cat-title">Assassin's Creed Valhalla</div><span class="cat-genre action">Action</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🌊</span><div class="cat-info"><div class="cat-title">Death Stranding DC</div><span class="cat-genre action">Action</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🔄</span><div class="cat-info"><div class="cat-title">Returnal</div><span class="cat-genre action">Action</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🐱</span><div class="cat-info"><div class="cat-title">Stray</div><span class="cat-genre action">Action</span></div></div>
+  </div>
+
+  <!-- Racing -->
+  <h3 style="font-size:1rem;font-weight:700;margin:20px 0 12px;color:var(--neon-cyan)">🏎️ Racing (5 titles)</h3>
+  <div class="catalogue-grid">
+    <div class="cat-card"><span class="cat-emoji">🏎️</span><div class="cat-info"><div class="cat-title">Gran Turismo 7</div><span class="cat-genre racing">Racing</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🚗</span><div class="cat-info"><div class="cat-title">Need for Speed Unbound</div><span class="cat-genre racing">Racing</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🏁</span><div class="cat-info"><div class="cat-title">F1 24</div><span class="cat-genre racing">Racing</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🏁</span><div class="cat-info"><div class="cat-title">F1 23</div><span class="cat-genre racing">Racing</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🏎️</span><div class="cat-info"><div class="cat-title">Forza Horizon 5</div><span class="cat-genre racing">Racing</span></div></div>
+  </div>
+
+  <!-- Fighting -->
+  <h3 style="font-size:1rem;font-weight:700;margin:20px 0 12px;color:#fb923c">🥊 Fighting (4 titles)</h3>
+  <div class="catalogue-grid">
+    <div class="cat-card"><span class="cat-emoji">🥊</span><div class="cat-info"><div class="cat-title">Mortal Kombat 1</div><span class="cat-genre fighting">Fighting</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🥋</span><div class="cat-info"><div class="cat-title">Tekken 8</div><span class="cat-genre fighting">Fighting</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">👊</span><div class="cat-info"><div class="cat-title">Street Fighter 6</div><span class="cat-genre fighting">Fighting</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🥊</span><div class="cat-info"><div class="cat-title">UFC 5</div><span class="cat-genre fighting">Fighting</span></div></div>
+  </div>
+
+  <!-- Shooter -->
+  <h3 style="font-size:1rem;font-weight:700;margin:20px 0 12px;color:#ef4444">🔫 Shooter (5 titles)</h3>
+  <div class="catalogue-grid">
+    <div class="cat-card"><span class="cat-emoji">🔫</span><div class="cat-info"><div class="cat-title">Call of Duty: Modern Warfare III</div><span class="cat-genre shooter">Shooter</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🔫</span><div class="cat-info"><div class="cat-title">Call of Duty: Modern Warfare II</div><span class="cat-genre shooter">Shooter</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">💣</span><div class="cat-info"><div class="cat-title">Battlefield 2042</div><span class="cat-genre shooter">Shooter</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🎮</span><div class="cat-info"><div class="cat-title">Resident Evil 4 Remake</div><span class="cat-genre shooter">Shooter</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🎮</span><div class="cat-info"><div class="cat-title">Resident Evil Village</div><span class="cat-genre shooter">Shooter</span></div></div>
+  </div>
+
+  <!-- RPG -->
+  <h3 style="font-size:1rem;font-weight:700;margin:20px 0 12px;color:var(--neon-blue)">🐉 RPG (6 titles)</h3>
+  <div class="catalogue-grid">
+    <div class="cat-card"><span class="cat-emoji">⚔️</span><div class="cat-info"><div class="cat-title">Final Fantasy XVI</div><span class="cat-genre rpg">RPG</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🌟</span><div class="cat-info"><div class="cat-title">Final Fantasy VII Rebirth</div><span class="cat-genre rpg">RPG</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">😈</span><div class="cat-info"><div class="cat-title">Diablo IV</div><span class="cat-genre rpg">RPG</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🐉</span><div class="cat-info"><div class="cat-title">Baldur's Gate 3</div><span class="cat-genre rpg">RPG</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🤖</span><div class="cat-info"><div class="cat-title">Cyberpunk 2077</div><span class="cat-genre rpg">RPG</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">👿</span><div class="cat-info"><div class="cat-title">Demon's Souls</div><span class="cat-genre rpg">RPG</span></div></div>
+  </div>
+
+  <!-- Family -->
+  <h3 style="font-size:1rem;font-weight:700;margin:20px 0 12px;color:var(--neon-pink)">❤️ Family / Party (3 titles)</h3>
+  <div class="catalogue-grid">
+    <div class="cat-card"><span class="cat-emoji">❤️</span><div class="cat-info"><div class="cat-title">It Takes Two</div><span class="cat-genre family">Family</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🧵</span><div class="cat-info"><div class="cat-title">Sackboy: A Big Adventure</div><span class="cat-genre family">Family</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">🔧</span><div class="cat-info"><div class="cat-title">Ratchet &amp; Clank: Rift Apart</div><span class="cat-genre family">Family</span></div></div>
+  </div>
+
+  <!-- Horror -->
+  <h3 style="font-size:1rem;font-weight:700;margin:20px 0 12px;color:#a1a1aa">👁️ Horror (2 titles)</h3>
+  <div class="catalogue-grid">
+    <div class="cat-card"><span class="cat-emoji">👁️</span><div class="cat-info"><div class="cat-title">Alan Wake 2</div><span class="cat-genre horror">Horror</span></div></div>
+    <div class="cat-card"><span class="cat-emoji">☠️</span><div class="cat-info"><div class="cat-title">Dead Space Remake</div><span class="cat-genre horror">Horror</span></div></div>
+  </div>
+</section>
+
+<!-- CONTACT / HOW TO BOOK -->
+<section class="pl-section">
+  <h2>📞 How to Book</h2>
+  <div class="contact-bar">
+    <div class="contact-item">
+      <span class="contact-icon">💬</span>
+      <div>
+        <div style="font-weight:800">WhatsApp</div>
+        <div style="color:var(--text-secondary);font-size:0.85rem">+91 89747 40608</div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <span class="contact-icon">📸</span>
+      <div>
+        <div style="font-weight:800">Instagram</div>
+        <div style="color:var(--text-secondary);font-size:0.85rem">@1up_gaming31</div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <span class="contact-icon">🌐</span>
+      <div>
+        <div style="font-weight:800">Online Booking</div>
+        <div style="color:var(--text-secondary);font-size:0.85rem">booking.html on this site</div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <span class="contact-icon">📍</span>
+      <div>
+        <div style="font-weight:800">Service Areas</div>
+        <div style="color:var(--text-secondary);font-size:0.85rem">Itanagar · Naharlagun · Nirjuli</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--bg-card);border:1px solid var(--border-color);border-radius:12px;padding:20px;font-size:0.88rem;color:var(--text-secondary);line-height:1.7;margin-bottom:32px">
+    <strong style="color:var(--text-primary)">📋 Booking Requirements:</strong>
+    Valid Aadhaar or PAN card · APST (Arunachal Pradesh Scheduled Tribe) resident · 18 years or older (guardian consent for minors) · Provide live GPS location at time of booking · Free home delivery within service areas
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:16px">
+          <div class="logo-icon">🎮</div>
+          <span class="gradient-text">1UP</span><span>Gaming</span>
+        </div>
+        <p>Premium PS5 rental service in Arunachal Pradesh. No deposit. FC 26 FREE.</p>
+        <div class="footer-socials">
+          <a href="https://instagram.com/1up_gaming31" class="social-btn instagram" target="_blank" rel="noopener" aria-label="Instagram">📸</a>
+          <a href="https://wa.me/918974740608" class="social-btn whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="games.html">Game Library</a></li>
+          <li><a href="booking.html">Book Now</a></li>
+          <li><a href="pricelist.html">Price List (PDF)</a></li>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Service Areas</h4>
+        <ul>
+          <li><a href="#">🏙️ Itanagar</a></li>
+          <li><a href="#">🌆 Naharlagun</a></li>
+          <li><a href="#">🏘️ Nirjuli</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Pricing</h4>
+        <ul>
+          <li><a href="booking.html">⚡ 1 Day — ₹499</a></li>
+          <li><a href="booking.html">🔥 3 Days — ₹899</a></li>
+          <li><a href="booking.html">🏆 1 Week — ₹1399</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 1UPGaming. Exclusively for APST — Arunachal Pradesh, India.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<div class="floating-whatsapp">
+  <span class="whatsapp-tooltip">💬 Book on WhatsApp</span>
+  <a href="https://wa.me/918974740608?text=Hi%201UPGaming!%20I%27d%20like%20to%20rent%20a%20PS5." 
+     class="whatsapp-fab" target="_blank" rel="noopener" aria-label="WhatsApp">
+    💬
+  </a>
+</div>
+
+<!-- PRINT BUTTON -->
+<button class="print-btn" onclick="window.print()" aria-label="Save as PDF">
+  🖨️ Save as PDF
+</button>
+
+<script>
+  // Register service worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  }
+  // Mobile nav toggle (shared with main.js pattern)
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks  = document.querySelector('.nav-links');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  }
+</script>
+</body>
+</html>

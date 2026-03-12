@@ -1,0 +1,46 @@
+{
+  "name": "1UPGaming — PS5 Rental",
+  "short_name": "1UPGaming",
+  "description": "Premium PS5 rental service in Itanagar, Naharlagun & Nirjuli, Arunachal Pradesh. No security deposit. FC 26 FREE with every rental! Browse 50+ PS5 games.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a0a0f",
+  "theme_color": "#a855f7",
+  "lang": "en",
+  "scope": "/",
+  "categories": ["entertainment", "games", "shopping"],
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Book a PS5",
+      "short_name": "Book Now",
+      "description": "Rent a PS5 now",
+      "url": "/booking.html",
+      "icons": [{ "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "Game Library",
+      "short_name": "Games",
+      "description": "Browse 50+ PS5 games",
+      "url": "/games.html",
+      "icons": [{ "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+    },
+    {
+      "name": "Price List",
+      "short_name": "Prices",
+      "description": "View rental pricing",
+      "url": "/pricelist.html",
+      "icons": [{ "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+    }
+  ],
+  "screenshots": [],
+  "related_applications": []
+}

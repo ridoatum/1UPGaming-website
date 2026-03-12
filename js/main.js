@@ -576,3 +576,12 @@ document.addEventListener('DOMContentLoaded', () => {
     counters.forEach(c => observer.observe(c));
   }
 });
+
+// ============================================================
+// SERVICE WORKER REGISTRATION (PWA / Chrome App)
+// ============================================================
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
