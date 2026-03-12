@@ -9,7 +9,10 @@
 const CONFIG = {
   WHATSAPP_NUMBER: '918974740608',
   INSTAGRAM_HANDLE: '1up_gaming31',
-  RAWG_API_KEY: 'YOUR_RAWG_API_KEY', // Free key from rawg.io/apidocs
+  // RAWG API key (free tier) — get yours at https://rawg.io/apidocs
+  // Replace 'YOUR_RAWG_API_KEY' with your actual key to load game cover images.
+  // Without a key, the library still works using emoji placeholder cards.
+  RAWG_API_KEY: 'YOUR_RAWG_API_KEY',
   RAWG_BASE_URL: 'https://api.rawg.io/api',
   AREAS: ['Itanagar', 'Naharlagun', 'Nirjuli'],
   PLANS: [
